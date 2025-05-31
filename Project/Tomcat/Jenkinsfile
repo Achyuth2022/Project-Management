@@ -1,7 +1,7 @@
 pipeline{
     agent {
       node {
-	label 'slave_1'
+	label 'Slave-1'
     }
 }
 
@@ -21,7 +21,7 @@ pipeline{
 	}
         stage('Git Checkout'){
             steps{
-                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'github access', url: 'https://github.com/devopscloudtrainer25/Project-Management.git']]])
+                checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'Github-Credentials', url: 'https://github.com/Achyuth2022/Project-Management']])
             }
         }
         stage('build'){
@@ -76,7 +76,7 @@ pipeline{
         stage ('Tomcat Deployment') {
            steps {
              script {
-                 deploy adapters: [tomcat9(credentialsId: 'tomcat-credentials', path: '', url: 'http://3.145.146.84:8080')], contextPath: '/webapp-app', onFailure: false, war: 'target/webapp.war' 
+                 deploy adapters: [tomcat9(alternativeDeploymentContext: '', credentialsId: 'tomcat-credentials', path: '', url: 'http://3.110.176.71:8080/')], contextPath: '/webapp-pipeline', onFailure: false, war: '**/*.war'
                     }
                   }
            }
