@@ -27,7 +27,7 @@ pipeline{
                sh '''
                 mvn package
                 mv target/*.war target/webapp.war
-		cp -r ${WORKSPACE}/target/webapp.war /var/lib/jenkins/
+		
                 '''
             }
         }
