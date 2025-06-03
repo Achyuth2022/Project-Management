@@ -19,14 +19,14 @@ pipeline{
 	}
        stage('Git Checkout') {
             steps{
-                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: '', url: 'https://github.com/devopscloudtrainer25/Project-Management.git']]])
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: '', url: 'https://github.com/Achyuth2022/Project-Management.git']]])
             }
         }
         stage('build') {
             steps{
                sh '''
                 mvn package
-                mv target/*.war target/webapp.war
+                
 		
                 '''
             }
